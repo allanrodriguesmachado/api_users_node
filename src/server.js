@@ -1,4 +1,5 @@
 require("express-async-errors");
+const connection = require("./database/sqlite")
 
 const  express = require("express");
 const AppError = require("./utils/AppError")
@@ -7,6 +8,9 @@ const routes = require("./routes")
 
 const app = express();
 app.use(express.json())
+
+connection();
+
 app.use(routes)
 
 app.use((error, request, response, next ) => {
