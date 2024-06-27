@@ -15,6 +15,8 @@ class UserController {
             throw new AppError("Este já esta cadastrado")
         }
 
+        await database.run("INSERT INTO users (first_name, email) VALUES (?,?)", [first_name, email])
+
         return response.status(201).json()
     }
 }
